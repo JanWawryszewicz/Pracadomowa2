@@ -1,0 +1,7 @@
+liczba = int(input())
+while liczba > 0:
+    if liczba % 9 == 0:
+        print(liczba)
+        liczba -= 1
+    else:
+        liczba-=1
