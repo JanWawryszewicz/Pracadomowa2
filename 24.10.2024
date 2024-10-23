@@ -1,0 +1,39 @@
+# 1. Utwórz pustą listę o nazwie "numbers".
+numbers = []
+
+# 2. Poproś użytkownika o podanie 5 liczb i dodaj je do listy.
+for i in range(5):
+    num = float(input(f"Podaj liczbę {i + 1}: "))
+    numbers.append(num)
+
+# 3. Oblicz sumę liczb znajdujących się w liście "numbers".
+total_sum = sum(numbers)
+print(f"Suma liczb: {total_sum}")
+
+# 4. Znajdź największą liczbę w liście "numbers".
+max_num = max(numbers)
+print(f"Największa liczba: {max_num}")
+
+# 5. Znajdź najmniejszą liczbę w liście "numbers".
+min_num = min(numbers)
+print(f"Najmniejsza liczba: {min_num}")
+
+# 6. Znajdź średnią arytmetyczną liczb w liście "numbers".
+average = total_sum / len(numbers)
+print(f"Średnia arytmetyczna: {average}")
+
+# 7. Znajdź ilość liczb parzystych w liście "numbers".
+even_count = len([num for num in numbers if num % 2 == 0])
+print(f"Ilość liczb parzystych: {even_count}")
+
+# 8. Stwórz nową listę o nazwie "duplicates" zawierającą powtarzające się elementy z listy "numbers".
+duplicates = list(set([num for num in numbers if numbers.count(num) > 1]))
+print(f"Powtarzające się elementy: {duplicates}")
+
+# 9. Usuń wszystkie powtarzające się elementy z listy "numbers".
+numbers = list(set(numbers))
+print(f"Lista bez powtórzeń: {numbers}")
+
+# 10. Stwórz nową listę o nazwie "squares" zawierającą kwadraty liczb z listy "numbers".
+squares = [num ** 2 for num in numbers]
+print(f"Kwadraty liczb: {squares}")
