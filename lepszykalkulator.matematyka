@@ -1,0 +1,51 @@
+import math
+PI = math.pi
+import random
+def kwadrat_pp(a):
+    return a*a
+def prostokat_pp(a,b):
+    return a*b
+def trojkat_pp(a,h):
+    return (a*h)/2
+def trapez_pp(a,b,h):
+    return ((a+b)*h)/2
+def rownoleglobok_pp(a,h):
+    return a*h
+def trojrownoboczny_pp(a):
+    return (a**2*math.sqrt(3))/4
+def kolo_pp(r):
+    return PI*r**2
+def romb_pp1(a,h):
+    return a*h
+def romb_pp2(e,f):
+    return (e*f)/2
+def kwadrat_ob(a):
+    return 4*a
+def prostokat_ob(a,b):
+    return 2*a+2*b
+def rownoleglobok_ob(a,b):
+    return 2*a+2*b
+def trapez_ob(a,b,c,d):
+    return a+b+c+d
+def trojkat_ob(a,b,c):
+    return a+b+c
+def trojkatrownoboczny_ob(a):
+    return 3*a
+def kola_ob(r):
+    2*PI*r
+def romb_ob(a):
+    return 4*a
+def szescian_pp(a):
+    return 6*a**2
+def prostopadloscian_pp(a,b,c):
+    return 2*a*b+2*a*c+2*b*c
+def graniastoslup_pp(Pp,Pb):
+    return 2*Pp+Pb
+def ostoslup_pp(Pp,Pb):
+    return Pp+Pb
+def walec_pp(r,H):
+    return 2*PI*r**2+2*PI*r*H
+def stożek_pp(r,l):
+    return PI*r**2+PI*r*l
+def kuli_pp(r):
+    return 4*PI*r**2
