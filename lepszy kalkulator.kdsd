@@ -1,0 +1,125 @@
+import matematyka
+while True:
+    print("Podaj co chcesz zrobić?")
+    print("1 - policz pole kwadratu")
+    print("2 - policz pole prostokąta")
+    print("3 - policz pole trójkąta")
+    print("4 - policz pole trapezu)")
+    print("5 - policz pole równoległoboku)")
+    print("6 - policz pole trójkąta równobocznego)")
+    print("7 - policz pole koła)")
+    print("8 - policz pole rombu(a i h))")
+    print("9 - policz pole rombu(e i f))")
+    print("10 - policz obwód kwadratu")
+    print("11 - policz obwód prostokąta")
+    print("12 - policz obwód równoległobok")
+    print("13 - policz obwód trapez")
+    print("14 - policz obwód trójkąt")
+    print("15 - policz obwód trójkąta równobocznego")
+    print("16 - policz obwód koła")
+    print("17 - policz obwód romb")
+    print("18 - policz pole sześcian")
+    print("19 - policz pole prostopadłościan")
+    print("20 - policz pole graniastosłup")
+    print("21 - policz pole ostrosłup")
+    print("22 - policz pole walec")
+    print("23 - policz pole stożek")
+    print("24 - policz pole kuli")
+    print("25 - wyjście")
+    pytanie = input()
+    print(pytanie)
+    if pytanie == "1":
+        a=int(input("Podaj długość boku a:"))
+        print(matematyka.kwadrat_pp(a))
+    elif pytanie == "2":
+        a=int(input("Podaj długość boku a:"))
+        b=int(input("Podaj długość boku b:"))
+        print(matematyka.prostokat_pp(a,b))   
+    elif pytanie == "3":
+        a=int(input("Podaj długość boku a:"))
+        h=int(input("Podaj długość boku h:"))
+        print(matematyka.trojkat_pp(a,h))  
+    elif pytanie == "4":
+        a=int(input("Podaj liczbę a:"))
+        b=int(input("Podaj liczbę b:"))
+        print(matematyka.trapez_pp(a,b,h)(a,b))
+    elif pytanie == "5":
+        a=int(input("Podaj długość boku a:"))
+        h=int(input("Podaj długość boku h:"))
+        print(matematyka.rownoleglobok_pp(a,h))  
+    elif pytanie == "6":
+        a=int(input("Podaj liczbę a:"))
+        print(matematyka.trojrownoboczny_pp(a))
+    elif pytanie == "7":
+        r=int(input("Podaj długość boku r:"))
+        print(matematyka.kolo_pp(r))
+    elif pytanie == "8":
+        a=int(input("Podaj długość boku a:"))
+        h=int(input("Podaj długość boku h:"))
+        print(matematyka.romb_pp1(a,h))
+    elif pytanie == "9":
+        e=int(input("Podaj długość boku e:"))
+        f=int(input("Podaj długość boku f:"))
+        print(matematyka.romb_pp2(e,f))
+    elif pytanie == "10":
+        a=int(input("Podaj długość boku a:"))
+        print(matematyka.kwadrat_ob(a))
+    elif pytanie == "11":
+        a=int(input("Podaj długość boku a:"))
+        b=int(input("Podaj długość boku b:"))
+        print(matematyka.prostokat_ob(a,b))
+    elif pytanie == "12":
+        a=int(input("Podaj długość boku a:"))
+        b=int(input("Podaj długość boku b:"))
+        print(matematyka.rownoleglobok_ob(a,b))
+    elif pytanie == "13":
+        a=int(input("Podaj długość boku a:"))
+        b=int(input("Podaj długość boku b:"))
+        c=int(input("Podaj długość boku c:"))
+        d=int(input("Podaj długość boku d:"))
+        print(matematyka.trapez_ob(a,b,c,d))
+    elif pytanie == "14":
+        a=int(input("Podaj długość boku a:"))
+        b=int(input("Podaj długość boku b:"))
+        c=int(input("Podaj długość boku c:"))
+        print(matematyka.trojkat_ob(a,b,c))
+    elif pytanie == "15":
+        a=int(input("Podaj liczbę a:"))
+        print(matematyka.trojkatrownoboczny_ob(a))
+    elif pytanie == "16":
+        r=int(input("Podaj liczbę r:"))
+        print(matematyka.kola_ob(r))
+    elif pytanie == "17":
+        a=int(input("Podaj liczbę a:"))
+        print(matematyka.romb_ob(a))
+    elif pytanie == "18":
+        a=int(input("Podaj liczbę a:"))
+        print(matematyka.szescian_pp(a))
+    elif pytanie == "19":
+        a=int(input("Podaj liczbę a:"))
+        b=int(input("Podaj liczbę b:"))
+        c=int(input("Podaj liczbę c:"))
+        print(matematyka.prostopadloscian_pp(a,b,c))
+    elif pytanie == "20":
+        Pp=int(input("Podaj długość boku Pp:"))
+        Pb=int(input("Podaj długość boku Pb:"))
+        print(matematyka.graniastoslup_pp(Pp,Pb))
+    elif pytanie == "21":
+        Pp=int(input("Podaj długość boku Pp:"))
+        Pb=int(input("Podaj długość boku Pb:"))
+        print(matematyka.ostoslup_pp(Pp,Pb))
+    elif pytanie == "22":
+        r=int(input("Podaj długość boku r:"))
+        H=int(input("Podaj długość boku H:"))
+        print(matematyka.walec_pp(r,H))
+    elif pytanie == "23":
+        r=int(input("Podaj długość boku r:"))
+        l=int(input("Podaj długość boku l:"))
+        print(matematyka.stożek_pp(r,l))
+    elif pytanie == "24":
+        r=int(input("Podaj liczbę r:"))
+        print(matematyka.kuli_pp(r))
+    elif pytanie == "25":
+        break
+    else:
+        print("nie ma takiej operacji")
