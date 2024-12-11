@@ -1,0 +1,66 @@
+
+import random
+
+def losowaniegracz(wybor = ['czerwony','czarny']):
+    wybor = input(("wybierz kolor 'czerwony' lub 'czarny' "))
+    if wybor in {'czerwony','czarny'}:
+     return (f"wybrałeś kolor",{wybor},"potwierdź wybór:")
+
+def taktycznyatak():
+   global X
+   global Y
+   global Z
+   X = random.randint(10,20)
+   Y = random.randint(1,5)
+   Z = random.randint(20,30)
+   return ("taktyczny atak")
+   
+def uderzenieog():
+   global XY
+   global YX
+   global ZY
+   XY = random.randint(10,20)
+   YX = random.randint(0,2)
+   ZY = random.randint(25,30)
+   return ("uderzenie ognia")
+
+def arcyatak():
+   global K
+   global W
+   global L
+   global O
+   K = random.randint(20,30)
+   W = random.randint(15,20)
+   L = random.randint(2,7)
+   O = random.randint(0,1)
+   return ("arcyatak")
+def niszczyciel():
+   global H
+   global K
+   global L
+   K = random.randint(0,2)
+   H = random.randint(25,30)
+   L= random.randint(10,20)
+   return("niszczyciel")
+def deszczpo():
+   global HJ
+   global KJ
+   KJ = random.randint(20,30)
+   HJ = random.randint(5,10)
+   return("deszcz pocisków")
+def atakpoz():
+   global HW
+   global KW
+   global LW
+   KW = random.randint(0,1)
+   HW = random.randint(10,15)
+   LW= random.randint(2,5)
+   return("atak pozycyjny")
+def mieszankawy():
+   global H
+   global K
+   global L
+   K = random.randint(1,3)
+   H = random.randint(30,35)
+   L= random.randint(10,20)
+   return("mieszanka wybuchowa")
