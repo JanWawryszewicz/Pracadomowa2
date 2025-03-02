@@ -1,0 +1,145 @@
+class Sok:
+    def __init__(self, marka, smak, kolor, cukier, butelka_litry, weglowodany, cena, dostepnosc, nr_seryjny, kolaboracje):
+        self.marka = marka
+        self.smak = smak
+        self.kolor = kolor
+        self.cukier = cukier
+        self.butelka_litry = butelka_litry
+        self.weglowdany = weglowodany
+        self.cena = cena
+        self.dostepnosc = dostepnosc
+        self.nr_seryjny = nr_seryjny
+        self.kolaboracje = kolaboracje
+
+    def opis(self):
+        return self.marka, self.smak, self.kolor, self.butelka_litry, self.cena, self.kolaboracje
+    def zmien_cene(self, nowa_cena):
+        self.cena = nowa_cena
+    def zmien_pojemnosc(self, nowe_litry):
+        self.butelka_litry = nowe_litry
+    def dodanie_kolaboracji(self, n_kolaboracje):
+        self.kolaboracje.append(n_kolaboracje)
+    def zmiana_koloru(self, n_kolor):
+        self.kolor = n_kolor
+    def zmiana_cukry(self, cukryy):
+        if cukryy <= self.cukier:
+            self.cukier -= cukryy
+            return (self.cukier)
+        else:
+            return("nie prawidłowa ilość")
+    def zw_we(self, weglowodanyy):
+       self.weglowdany += weglowodanyy
+
+sok1 = Sok("Tymbark", "cytrynowy", "żółty", 5, 2.0, 35, 2.99, "Dostępny", "KL21283", ["Samsung","Toyota"])
+sok2 = Sok("Hortex", "pomarańczowy","Pomarańczowy", 9, 1.5, 22, 5.99, "Dostępny", "S12345", ["Coca-Cola", "Pepsi"])
+sok3 = Sok("Kubuś", "jabłkowy", "Zielony", 8, 1.0, 20, 4.49, "Niedostępny", "S67890", ["Lidl", "Auchan"])
+
+class Zwierze:
+    def __init__(self, gatunek, imie, wiek, masa, kolor, typ, terytorium, ul_czynnosci, zachowania, stan_zdrowia):
+        self.gatunek = gatunek
+        self.imie = imie
+        self.wiek = wiek
+        self.masa = masa
+        self.kolor = kolor
+        self.typ = typ
+        self.terytorium = terytorium
+        self.ul_cyznnosci = ul_czynnosci
+        self.zachowania = zachowania
+        self.stan_zdrowia = stan_zdrowia
+
+    def opis(self):
+        return f"{self.imie}, {self.gatunek}, {self.wiek}, {self.masa}, {self.kolor}."
+
+    def zmien_kolor(self, nowy_kolor):
+        self.kolor = nowy_kolor
+
+    def zmien_stan_zdrowia(self, nowy_stan):
+        self.stan_zdrowia = nowy_stan
+
+    def zmien_diete(self, nowa_dieta):
+        self.diety = nowa_dieta
+
+    def zmien_terytorium(self, nowe_terytorium):
+        self.terytorium = nowe_terytorium
+
+    def wiek_zwierzecia(self):
+        return f"{self.imie} ma {self.wiek} lat."
+
+    def dodaj_zachowanie(self, nowe_zachowanie):
+        self.zachowania += nowe_zachowanie
+
+    def informacje_o_zwierzeciu(self):
+        return f"{self.opis()} Zwyczaje: {', '.join(self.zachowania)}"
+    
+zwierze1 = Zwierze("Pies", "Burek", 5, 20, "Biały", "Ssak", "Podwórko", ["Szczekanie", "Bieganie"], ["Bardzo wesoły"], "Dobry")
+zwierze2 = Zwierze("Kot", "Mruczek", 3, 5, "Szary", "Ssak", "Mieszkanie", ["Miauczenie", "Bieganie"], ["towarzyski"], "Świetny")
+zwierze3 = Zwierze("Papuga", "Kiki", 2, 0.5, "Zielona", "Ptak", "Klatka", ["Śpiewanie", "Latanie"], ["Głośna", "Towarzyska"], "Świetny")
+
+class KontoBankowe:
+    def __init__(self, imie, nazwisko, numer_konta, saldo, waluta, data_otwarcia, typ_konta, status):
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.numer_konta = numer_konta
+        self.saldo = saldo
+        self.waluta = waluta
+        self.data_otwarcia = data_otwarcia
+        self.typ_konta = typ_konta  
+        self.status = status  
+
+    def dodaj_srodki(self, kwota):
+        if kwota > 0:
+            self.saldo += kwota
+        return self.saldo
+
+    def odejmij_srodki(self, kwota):
+        if kwota > 0 and self.saldo >= kwota:
+            self.saldo -= kwota
+        return self.saldo
+
+    def zmien_status(self, nowy_status):
+        self.status = nowy_status
+
+    def zmien_typ_konta(self, nowy_typ):
+        self.typ_konta = nowy_typ
+
+    def informacje_o_koncie(self):
+        return {
+            "Imię": self.imie,
+            "Nazwisko": self.nazwisko,
+            "Numer konta": self.numer_konta,
+            "Saldo": self.saldo,
+            "Waluta": self.waluta,
+            "Data otwarcia": self.data_otwarcia,
+            "Typ konta": self.typ_konta,
+            "Status konta": self.status
+        }
+
+    def sprawdz_saldo(self):
+        return self.saldo
+
+    def zmien_walute(self, nowa_waluta):
+        self.waluta = nowa_waluta
+        return self.waluta
+
+
+konto1 = KontoBankowe("Jan", "Kowalski", "PL1234567890", 5000, "PLN", "2020-01-15", "ROR", "Aktywne")
+konto2 = KontoBankowe("Anna", "Nowak", "PL0987654321", 12000, "PLN", "2021-03-25", "Oszczędnościowe", "Zablokowane")
+konto3 = KontoBankowe("Adam","Nowak", "PL04937293838", 5000, "USD", "2026-03-30", "oszczędnościowe", "Zablokowane")
+
+konto2.zmien_status("Aktywne")
+konto1.zmien_walute("EUR")
+
+zwierze1.dodaj_zachowanie("posłuszny")
+zwierze2.dodaj_zachowanie("spokojny")
+
+sok1.zmien_cene(6.49)
+sok2.dodanie_kolaboracji("Carrefour")
+
+print(sok1.opis())  
+print(sok2.opis()) 
+
+print(zwierze1.opis())  
+print(zwierze2.opis())  
+
+print(konto1.informacje_o_koncie())  
+print(konto2.informacje_o_koncie())  
