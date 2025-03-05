@@ -1,0 +1,119 @@
+import random
+
+class Sigma:
+    def __init__(self):
+        self.hp = 100
+        self.atak = 10
+        self.zyje = True
+        self.imie = "Sigma"
+        self.doswiadczenie = 0
+        self.level = 1
+        self.mana = 50
+        self.maks_hp = 100
+        self.maks_mana = 50
+    
+    def odejmij_hp(self, a):
+        self.hp -= a
+        if self.hp <= 0:
+            self.hp = 0
+            self.zyje = False
+            print(f"{self.imie} zginął!")
+    
+    def czy_zyje(self):
+        return self.zyje
+    
+    def basic_atak(self):
+        return self.atak
+    
+    def specjalny_atak(self, g):
+        obrazenia = random.randint(15, 25)
+        print(f"{self.imie} wykonuje specjalny atak! Zadaje {obrazenia} obrażeń.")
+        g.odejmij_hp(obrazenia)
+    
+    def zdobycie_doswiadczenia(self, ilosc):
+        self.doswiadczenie += ilosc
+        print(f"{self.imie} zdobył {ilosc} punktów doświadczenia. Aktualne doświadczenie: {self.doswiadczenie}.")
+        if self.doswiadczenie >= self.level * 100:
+            self.level_up()
+    
+    def level_up(self):
+        self.level += 1
+        print(f"{self.imie} awansował na level {self.level}")
+    
+    def atak(self, g):
+        damage = self.basic_atak()
+        print(f"{self.imie} atakuje! Zadaje {damage} obrażeń.")
+        g.odejmij_hp(damage)
+
+    def leczy_siebie(self):
+        if self.mana >= 10:
+            heal = random.randint(10, 20)
+            self.hp = self.hp + heal
+            self.mana -= 10
+            print(f"{self.imie} leczy siebie o {heal} HP. Pozostała mana: {self.mana}")
+        else:
+            print(f"{self.imie} nie ma wystarczającej many na leczenie!")
+    
+    def uzyj_mana_attack(self, target):
+        if self.mana >= 15:
+            obrazenia = random.randint(20, 35)
+            self.mana -= 15
+            print(f"{self.imie} używa ataku magicznego! Zadaje {obrazenia} obrażeń.")
+            g.odejmij_hp(obrazenia)
+        else:
+            print(f"{self.imie} nie ma wystarczającej many!")
+
+class Goblin:
+    def __init__(self):
+        self.hp = 20
+        self.atak = 2
+        self.zyje = True
+        self.imie = "Goblin"
+    def odejmij_hp(self, a):
+        self.hp -= a
+        if self.hp <= 0:
+            self.hp = 0
+            self.zyje = False
+            print(f"{self.imie} zginął!")
+    
+    def czy_zyje(self):
+        return self.zyje
+    def basic_atak(self):
+        return self.atak
+    def atak(self, target):
+        damage = self.basic_atak()
+        print(f"{self.imie} atakuje! Zadaje {damage} obrażeń.")
+        s.odejmij_hp(damage)
+
+s = Sigma()
+lzg = 0  
+
+while s.czy_zyje():
+    print(f"Walka {lzg + 1} rozpoczeta...")
+    
+    g = Goblin()  
+    print(f"{g.imie} wkroczył do gry z {g.hp} HP i {g.atak} ataku.")
+    
+    while g.czy_zyje() and s.czy_zyje():
+        if random.choice([True, False]):
+            s.specjalny_atak(g)
+        else:
+            s.odejmij_hp(g.basic_atak())
+        
+        if g.czy_zyje():
+            g.odejmij_hp(s.basic_atak())
+        if not g.czy_zyje():
+            s.zdobycie_doswiadczenia(20)  
+        
+        if s.hp < 50 and s.mana >= 10:
+            s.leczy_siebie()
+        if s.hp >= s.maks_hp * 0.75:
+            if random.choice([True, False]):
+                s.uzyj_mana_attack(g)
+
+    lzg += 1 
+
+if s.czy_zyje():
+    print(f"\n{s.imie} pokonał {lzg} Goblinów!")
+else:
+    print(f"{s.imie} zginął po walce z {lzg} Goblinami mając level {s.doswiadczenie}  {s.mana}.")
