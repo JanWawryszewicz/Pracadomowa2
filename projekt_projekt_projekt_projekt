@@ -1,0 +1,187 @@
+import uuid
+
+jk = {
+    "imie": "Jan",
+    "nazwisko": "Kowalski",
+    "liczba_wyporzyczonych_ksiazek": 5,
+    "rok_ur": 1989,
+    "miejsce_ur": "Warszawa",
+    "ulica": "cukierkowa",
+    "nm_mieszkania": 23,
+    "dni_po_terminie_oddania_ksiazki": 15
+}
+
+dk = {
+    "imie": "Dominik",
+    "nazwisko": "Kamieniarz",
+    "liczba_wyporzyczonych_ksiazek": 2,
+    "rok_ur": 2002,
+    "miejsce_ur": "Bydgoszcz",
+    "ulica": "kolorowa",
+    "nm_mieszkania": 17,
+    "dni_po_terminie_oddania_ksiazki": 87
+}
+
+osoby_k = {
+    "osoba1": jk,
+    "osoba2": dk
+}
+
+k = {
+    "nazwa": "Władca pierścieni",
+    "liczba_stron": 300,
+    "wyporzyczenia": 2,
+    "uszkodzenie_1-10": 4,
+    "dostepnosc": True,
+    "id": uuid.uuid4(),
+    "styl": "przygodowa"
+}
+
+d = {
+    "nazwa": "Matematyka rozszerzona",
+    "liczba_stron": 180,
+    "wyporzyczenia": 8,
+    "uszkodzenie_1-10": 7,
+    "dostepnosc": False,
+    "id": uuid.uuid3(uuid.NAMESPACE_DNS, 'example.com'),
+    "styl": "naukowa"
+}
+
+def inf(lst: list) -> None:
+    for dic in lst:
+        for k, v in dic.items():
+            print(f"{k} : {v}")
+        print("---" * 10)
+
+def inf_os(lst: dict) -> None:
+    for key, dic in lst.items():
+        print(f"{key}:")
+        for k, v in dic.items():
+            print(f"{k}: {v}")
+        print("---" * 10)
+
+def zm(lst: list) -> None:
+    while True:
+        print("Nazwa książki, którą chcesz zmienić (wpisz dokładną nazwę), jeśli chcesz opuścić tę zakładkę, wpisz 'a'")
+        kkkk = input().lower()
+        if kkkk == "a":
+            break
+        
+        valid_keys = ["nazwa", "liczba_stron", "wyporzyczenia", "uszkodzenie_1-10", "dostepnosc", "id", "styl"]
+
+        if kkkk == "k":
+                print("Co chcesz zmienić? Wpisz dokładną nazwę parametru (np. 'nazwa', 'liczba_stron'):")
+                l = input().lower()
+                if l not in valid_keys:
+                    print("Niepoprawna nazwa parametru.")
+                    continue
+                
+                print(f"Kliknij 'u' aby usunąć, 'p' aby zmienić, 'd' aby dodać nowe punkty do {kkkk}, h aby usunąć ostatni parametr z książki, 'o' aby wyświetlić osoby które wyporzyczyły tę książkę i związane z tym opcje")
+                kk = input().lower()
+
+                if kk == "u":
+                    k.pop(l)
+                    print(f"Usunięto {l} z książki.")
+                
+                elif kk == "p":
+                    ww = input(f"Podaj nową wartość dla {l}: ").lower()
+                    k[l] = ww
+                    print(f"Zmieniono {l} na {ww} w książce '{kkkk}'")
+                
+                elif kk == "d":
+                    dd = input(f"Podaj nowy klucz (np. 'nowy_punkt'): ").lower()
+                    hh = input(f"Podaj wartość dla {dd}: ").lower()
+                    k[dd] = hh
+                    print(f"Dodano nowy punkt {dd}: {hh} do książki '{kkkk}'")
+                
+                elif kk == "h":
+                    k.popitem()
+                
+                else:
+                    print("Niepoprawna komenda.")
+           
+def zm_o(lst: dict) -> None:
+    while True:
+        print("Nazwa osoby, którą chcesz zmienić (wpisz dokładną nazwę), jeśli chcesz opuścić tę zakładkę, wpisz 'a'")
+        kkkk = input().lower()
+        if kkkk == "a":
+            break
+        
+        valid_keys = ["imie", "nazwisko", "liczba_wyporzyczonych_ksiazek", "rok_ur", "miejsce_ur", "ulica", "nm_mieszkania", "dni_po_terminie_oddania_ksiazki"]
+
+        if kkkk == "jk":
+            print("Co chcesz zmienić? Wpisz dokładną nazwę parametru (np. 'nazwa', 'liczba_stron'):") 
+            l = input().lower()
+            if l not in valid_keys:
+                print("Niepoprawna nazwa parametru.")
+                continue
+                
+            print(f"Kliknij 'u' aby usunąć, 'p' aby zmienić, 'd' aby dodać nowe punkty do {kkkk}, h aby usunąć ostatni parametr z osoby.")
+            kk = input().lower()
+
+            if kk == "u":
+                jk.pop(l)
+                print(f"Usunięto {l} z osoby.")
+            
+            elif kk == "p":
+                ww = input(f"Podaj nową wartość dla {l}: ")
+                jk[l] = ww
+                print(f"Zmieniono {l} na {ww} w osobie 'jk'")
+            
+            elif kk == "d":
+                dd = input(f"Podaj nowy klucz (np. 'nowy_punkt'): ")
+                hh = input(f"Podaj wartość dla {dd}: ")
+                jk[dd] = hh
+                print(f"Dodano nowy punkt {dd}: {hh} do osoby 'jk'")
+
+            elif kk == "h":
+                jk.popitem()
+
+        elif kkkk == "dk":
+            print("Co chcesz zmienić? Wpisz dokładną nazwę parametru (np. 'nazwa', 'liczba_stron'):") 
+            l = input().lower()
+            if l not in valid_keys:
+                print("Niepoprawna nazwa parametru.")
+                continue
+                
+            print(f"Kliknij 'u' aby usunąć, 'p' aby zmienić, 'd' aby dodać nowe punkty do {kkkk}, h aby usunąć ostatni parametr z osoby.")
+            kk = input().lower()
+
+            if kk == "u":
+                dk.pop(l)
+                print(f"Usunięto {l} z osoby.")
+            
+            elif kk == "p":
+                ww = input(f"Podaj nową wartość dla {l}: ")
+                dk[l] = ww
+                print(f"Zmieniono {l} na {ww} w osobie 'dk'")
+            
+            elif kk == "d":
+                dd = input(f"Podaj nowy klucz (np. 'nowy_punkt'): ")
+                hh = input(f"Podaj wartość dla {dd}: ")
+                dk[dd] = hh
+                print(f"Dodano nowy punkt {dd}: {hh} do osoby 'dk'")
+
+            elif kk == "h":
+                dk.popitem()
+
+biblioteka = [k, d]  
+osoby_kk = {"osoba1": jk, "osoba2": dk}
+
+while True:
+    inp = input("Wpisz komendę ('i' - informacje, 'z' - zmiana, 'e' - zakończenie, 'o' - informacje o osobach wypożyczających) ").lower()
+    if inp == "i":
+        inf(biblioteka)
+    elif inp == "e":
+        print("Program zakończy działanie.")
+        break
+    elif inp == "z":
+        zm(biblioteka)
+    elif inp == "o":
+        inf_os(osoby_k)
+        print("Czy chcesz wprowadzić jakieś zmiany? Jeśli tak, wpisz 'o'")
+        dk_input = input().lower()
+        if dk_input == "o":
+            zm_o(osoby_kk)
+    else:
+        print("Nie ma takiej komendy.")
