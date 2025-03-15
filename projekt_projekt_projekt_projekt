@@ -1,4 +1,4 @@
-import uuid
+import uuid,random
 
 jk = {
     "imie": "Jan",
@@ -8,7 +8,8 @@ jk = {
     "miejsce_ur": "Warszawa",
     "ulica": "cukierkowa",
     "nm_mieszkania": 23,
-    "dni_po_terminie_oddania_ksiazki": 15
+    "dni_po_terminie_oddania_ksiazki": 15,
+    "haslo":4321
 }
 
 dk = {
@@ -19,7 +20,8 @@ dk = {
     "miejsce_ur": "Bydgoszcz",
     "ulica": "kolorowa",
     "nm_mieszkania": 17,
-    "dni_po_terminie_oddania_ksiazki": 87
+    "dni_po_terminie_oddania_ksiazki": 87,
+    "haslo":1234
 }
 
 osoby_k = {
@@ -66,7 +68,6 @@ def zm(lst: list) -> None:
         kkkk = input().lower()
         if kkkk == "a":
             break
-        
         valid_keys = ["nazwa", "liczba_stron", "wyporzyczenia", "uszkodzenie_1-10", "dostepnosc", "id", "styl"]
 
         if kkkk == "k":
@@ -100,6 +101,8 @@ def zm(lst: list) -> None:
                 else:
                     print("Niepoprawna komenda.")
            
+
+
 def zm_o(lst: dict) -> None:
     while True:
         print("Nazwa osoby, którą chcesz zmienić (wpisz dokładną nazwę), jeśli chcesz opuścić tę zakładkę, wpisz 'a'")
@@ -165,11 +168,92 @@ def zm_o(lst: dict) -> None:
             elif kk == "h":
                 dk.popitem()
 
+def rejestracja(lst: dict) -> None:
+    while True:
+        print(f"Witaj w rejestracji! Aby rozpocząć rejestrację, kliknij 'r'. Aby opuścić tę zakładkę, kliknij 'a'.")
+        pp = input().lower()
+        if pp == "a":
+            break
+        elif pp == "r":
+            print("Podaj swoje imię, nazwisko, rok urodzenia, miejsce urodzenia, ulicę obecnego zamieszkania, numer obecnego mieszkania.")
+            im = input("Podaj imię: ")
+            na = input("Podaj nazwisko: ")
+            ru = input("Podaj rok urodzenia: ")
+            mu = input("Podaj miejsce urodzenia: ")
+            ul = input("Podaj ulicę zamieszkania: ")
+            nm = input("Podaj numer mieszkania: ")
+            print(f"Twoje imię to {im}, nazwisko {na}, rok urodzenia {ru}, miejsce urodzenia {mu}, ulica zamieszkania {ul}, numer mieszkania {nm}")
+        
+            n_o = {
+                "imie": im,
+                "nazwisko": na,
+                "liczba_wyporzyczonych_ksiazek": 0,
+                "rok_ur": ru,
+                "miejsce_ur": mu,
+                "ulica": ul,
+                "nm_mieszkania": nm,
+                "dni_po_terminie_oddania_ksiazki": 0
+            }
+            
+            klucz = (f"osoba{len(lst) + 1}")  
+            osoby_k[klucz] = n_o
+
+            print("Zarejestrowano nową osobę:")
+            print("---" * 10)
+            print("aby wprowadzić własne haslo kliknij h, aby wygenerowac haslo wprowadz w")
+            dld = input()
+            if dld == "h":
+                    print("proszę wprowadzic haslo")
+                    ha = input()
+                    n_o.update({"haslo": ha})
+                    break
+            elif dld == "w":
+                male_litery = "abcdefghijklmnopqrstuvwxyz"
+                duze_litery = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                cyfry = "0123456789"
+                znaki_specjalne = "!@#$%^&*()-_=+[]|;:,.<>?"
+                wszystkie_znaki = male_litery + duze_litery + cyfry + znaki_specjalne
+                haslo_l = [random.choice(wszystkie_znaki) for _ in range(8) ]
+                print(f"oto wygenerowane haslo {haslo_l}, aby je zatwierdzić kliknij a, jeśli chcesz je zmienić kliknij z")
+                kkl = input().lower()
+                if kkl == "a":
+                    n_o.update({"haslo": haslo_l})
+                    break
+                elif kkl == "z":
+                    print("proszę wprowadzic haslo")
+                    ha = input()
+                    n_o.update({"haslo": ha})
+                    break
+def sprawdz_nazwe(nazwa: str, slownik: dict) -> bool:
+    for osoba in slownik.values():
+        if osoba['imie'].lower() == nazwa.lower() or osoba['nazwisko'].lower() == nazwa.lower():
+            return True
+    return False
+
+def login(osoby_k):
+    print("Podaj imię lub nazwisko:")
+    nazwa = input().lower()
+
+    # Przechodzimy przez wszystkie osoby w słowniku
+    for osoba_key, osoba in osoby_k.items():
+        # Porównanie z imieniem i nazwiskiem
+        if osoba['imie'].lower() == nazwa or osoba['nazwisko'].lower() == nazwa:
+            print(f"Nazwa {nazwa} jest poprawna.")
+            print("Proszę o wprowadzenie hasła:")
+            ha = input()
+
+            # Sprawdzamy, czy hasło jest poprawne
+            if ha == osoba.get("haslo", ""):
+                print("Pomyślnie zalogowano :)")
+                return
+            else:
+                print("Błędne hasło.")
+                return
+    
 biblioteka = [k, d]  
-osoby_kk = {"osoba1": jk, "osoba2": dk}
 
 while True:
-    inp = input("Wpisz komendę ('i' - informacje, 'z' - zmiana, 'e' - zakończenie, 'o' - informacje o osobach wypożyczających) ").lower()
+    inp = input("Wpisz komendę ('i' - informacje, 'z' - zmiana, 'e' - zakończenie, 'o' - informacje o osobach wypożyczających 'r' - rejestracja ").lower()
     if inp == "i":
         inf(biblioteka)
     elif inp == "e":
@@ -182,6 +266,10 @@ while True:
         print("Czy chcesz wprowadzić jakieś zmiany? Jeśli tak, wpisz 'o'")
         dk_input = input().lower()
         if dk_input == "o":
-            zm_o(osoby_kk)
+            zm_o(osoby_k)
+    elif inp == "r":
+        rejestracja(osoby_k)
+    elif inp == "l":
+        login(osoby_k)
     else:
         print("Nie ma takiej komendy.")
