@@ -1,0 +1,124 @@
+import uuid,random
+
+p = {
+    "nazwa": "Lm",
+    "liczba_stron": 1200,
+    "wyporzyczenia": 1,
+    "uszkodzenie_1-10": 9,
+    "dostepnosc": "nie",
+    "id": uuid.uuid4(),
+    "styl": "przygodowa",
+    "autor": "hobbit",
+    "rok_powstania": 1989
+}
+
+k = {
+    "nazwa": "Wp",
+    "liczba_stron": 300,
+    "wyporzyczenia": 2,
+    "uszkodzenie_1-10": 4,
+    "dostepnosc": "nie",
+    "id": uuid.uuid4(),
+    "styl": "przygodowa",
+    "autor": "hobbit",
+    "rok_powstania": 1989
+}
+
+d = {
+    "nazwa": "Mr",
+    "liczba_stron": 180,
+    "wyporzyczenia": 8,
+    "uszkodzenie_1-10": 7,
+    "dostepnosc": "nie",
+    "id": uuid.uuid4(),
+    "styl": "naukowa",
+    "autor": "Nowa Era",
+    "rok_powstania": 2024
+}
+
+h = {
+    "nazwa": "Hp",
+    "liczba_stron": 320,
+    "wypozyczenia": 5,
+    "uszkodzenia": 1, 
+    "styl": "Fantasy",
+    "autor": "J.K. Rowling",
+    "rok_powstania": 1997,
+    "dostepnosc": "tak",
+    "id": uuid.uuid4(),  
+}
+
+jk = {
+    "imie": "Jan",
+    "nazwisko": "Kowalski",
+    "liczba_wyporzyczonych_ksiazek": 5,
+    "rok_ur": 1989,
+    "miejsce_ur": "Warszawa",
+    "ulica": "cukierkowa",
+    "nm_mieszkania": 23,
+    "dni_po_terminie_oddania_ksiazki": 15,
+    "haslo":4321,
+    "wyporzyczone_ksiazki":[k,d],
+    "zalogowano":"nie"
+}
+
+dk = {
+    "imie": "Dominik",
+    "nazwisko": "Kamieniarz",
+    "liczba_wyporzyczonych_ksiazek": 2,
+    "rok_ur": 2002,
+    "miejsce_ur": "Bydgoszcz",
+    "ulica": "kolorowa",
+    "nm_mieszkania": 17,
+    "dni_po_terminie_oddania_ksiazki": 87,
+    "haslo":1234,
+    "wyporzyczone_ksiazki":[k],
+    "zalogowano":"nie"
+}
+mk = {
+    "imie": "Mikolaj",
+    "nazwisko": "Kopernik",
+    "liczba_wyporzyczonych_ksiazek": 9,
+    "rok_ur": 1965,
+    "miejsce_ur": "Torun",
+    "ulica": "Kosmiczna",
+    "nm_mieszkania": 13,
+    "dni_po_terminie_oddania_ksiazki": 0,
+    "haslo": 1357,
+    "wyporzyczone_ksiazki":[k],
+    "zalogowano":"nie"
+}
+
+ad = {
+    "imie": "admin",
+    "ranga": "admin",
+    "zalogowano": "nie",
+    "haslo": 3570,
+    "bany": 0
+}
+
+pr1 = {
+    "imie": "Bogdan",
+    "nazwisko":"Kowalski",
+    "ranga": "sprzatacz",
+    "zalogowano": "nie",
+    "haslo": 1111,
+    "zadania":"brak",
+    "uprzejmosc_1-5":2,
+    "sposob_wykonywania_zadan_1-10":9,
+    "czas_zatrudnie_w_latach":5,
+    "czas_zatrudnie_w_miesiacach":10,
+    "rok_urodzenia":1989
+}
+
+osoby_k = {
+    "osoba1": jk,
+    "osoba2": dk,
+    "osoba3":mk,
+    "osoba4":ad
+}
+
+pracownicy = {
+    "pracownik1":pr1,
+    "pracownik2":ad
+}
