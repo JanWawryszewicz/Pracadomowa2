@@ -1,0 +1,53 @@
+import math
+
+class Matma:
+    @staticmethod
+    def dodawanie(a,b):
+        return a + b
+    
+    @staticmethod
+    def odejmowanie(a,b):
+        return a - b
+    
+    @staticmethod
+    def mnozenie(a,b):
+        return a * b
+    
+    @staticmethod
+    def dzielenie(a,b):
+        if a or b == 0:
+            print("operacja jest niemożliwa")
+        return a/b
+    
+    @staticmethod
+    def potegowanie(a, b):
+        return a**b
+    
+    @staticmethod
+    def czy_parzysta(a):
+        if a%2 == 0:
+            print("liczba jest parzysta")
+        elif a%2 != 0:
+            print("liczba nie jest parzysta")
+
+    @staticmethod
+    def pierwisatskowanie(a):
+        if a == 0:
+            return math.sqrt(a)
+        else:
+            return("nie można zrobic pierwiastka")
+    
+    @staticmethod
+    def czy_pierwsza(n):
+        if n < 2:
+            return False
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+    
+    @staticmethod
+    def srednia(lista):
+        if not lista:
+            return 0
+        return sum(lista) / len(lista)
