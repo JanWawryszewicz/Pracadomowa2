@@ -1,0 +1,63 @@
+class Postac:
+    def __init__(self, nazwa, hp, mana, atak):
+        self.nazwa = nazwa
+        self.hp = hp
+        self.mana = mana
+        self.atak = atak
+    
+    def zwykly_atak(self, cel):
+        cel.hp -= self.atak
+        print(f"{self.nazwa} atakuje {cel} za {atak} punktow obrazen")
+
+    def leczenie(self):
+        if self.mana >= 10:
+            self.mana -= 10
+            self.hp += 5
+            print(f"{self.nazwa} został uleczony !, jego obecny stan zdrowia wynosi {self.hp}")
+        else:
+            print(f"{self.nazwa} nie może zostać uleczony, twoja obecna mana wynosi {self.mana}")
+    def atak_magiczny(self,cel):
+        if self.mana >= 15:
+            self.mana -= 15
+            cel.hp -= 25
+            print(f"{self.nazwa} użył magicznego ataku!!! jego obecny stan many wynosi {self.mana}, przeciwnik ma {cel.hp} hp")
+        else:
+            print(f"{self.nazwa} nie może użyć magicznego ataku :( jego obecna mana wynosi {self.mana}")
+
+class Rycerz(Postac):
+    def __init__(self, nazwa, hp, mana, atak):
+        super().__init__(nazwa, hp, mana, atak)
+
+def walka():
+    print("Czy chcesz się podjąć walki")
+
+rycerz = Rycerz("sigma", 100, 10, 15)
+
+https://drive.google.com/drive/folders/18Iy58FnklmfdHaXbh5SwYs4sAfe6sYyY
+
+class Kolo:
+   def __init__(self) -> None:
+       print("skibidi")
+
+
+class Silnik:
+   def __init__(self) -> None:
+       print("sigma")
+
+
+class Wlasciciel:
+   def __init__(self) -> None:
+       print("boy")
+
+
+class Auto:
+   def __init__(self, kolo:Kolo, silnik: Silnik, wlasciciel: Wlasciciel) -> None:
+       self.kolo = kolo
+       self.silnik = silnik
+       self.wlasiciel = wlasciciel
+
+
+k = Kolo()
+s = Silnik()
+w = Wlasciciel()
+a = Auto(k,s,w)
