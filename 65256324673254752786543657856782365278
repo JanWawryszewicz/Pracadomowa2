@@ -1,0 +1,90 @@
+import time
+
+class Konto_bankowe():
+    def __init__(self, saldo, kredyt, akcje, krypto, sejf):
+        self.saldo = saldo
+        self.kredyt = kredyt
+        self.akcje = akcje
+        self.krypto = krypto
+        self.sejf = {
+            "intel": 0, "lenovo": 0, "nvidia": 0,
+            "dogcoin": 0, "solana": 0, "bitcoin": 0
+        }
+    
+    def wplacanie(self,p):
+        p = int(input("wpisz wybrana sume: "))
+        self.saldo += p
+        print(f"dokonales wplaty o wysokosci {p}")
+    
+    def wyplacanie(self,k):
+        k = int(input("wpisz wybrana sume: "))
+        self.saldo -= k
+        print(f"dokonales wyplaty o wysokosci {k}")
+    
+    def wez_kredyt(self):
+        w = int(input("Podaj wielkość kredytu: "))
+        d = int(input("Podaj liczbę rat: "))
+        r = w * 1.25  
+        rata = r / d
+        self.saldo += w
+        print(f"Przyznano kredyt: {w} zł. Do spłaty: {r:.2f} zł w {d} ratach po {rata:.2f} zł każda.")
+    
+    def kup_akcje(self):
+        ceny = {"intel": 100, "lenovo": 300, "nvidia": 550}
+        wybor = input("Wybierz akcje: intel (i), lenovo (l), nvidia (n): ").lower()
+        if wybor in {"i", "l", "n"}:
+            ile = int(input("Ile chcesz kupić? "))
+            nazwa = {"i": "intel", "l": "lenovo", "n": "nvidia"}[wybor]
+            cena = ceny[nazwa]
+            koszt = cena * ile
+            if self.saldo >= koszt:
+                self.saldo -= koszt
+                self.sejf[nazwa] += ile
+                print(f"Kupiłeś {ile} akcji {nazwa}. Saldo: {self.saldo}")
+            else:
+                print("Za mało środków!")
+    
+    def kup_krypto(self):
+        ceny = {"dogcoin": 250, "solana": 600, "bitcoin": 1250}
+        wybor = input("Wybierz krypto: dogcoin (d), solana (s), bitcoin (b): ").lower()
+        if wybor in {"d", "s", "b"}:
+            ile = int(input("Ile chcesz kupić? "))
+            nazwa = {"d": "dogcoin", "s": "solana", "b": "bitcoin"}[wybor]
+            cena = ceny[nazwa]
+            koszt = cena * ile
+            if self.saldo >= koszt:
+                self.saldo -= koszt
+                self.sejf[nazwa] += ile
+                print(f"Kupiłeś {ile} {nazwa}. Saldo: {self.saldo}")
+            else:
+                print("Za mało środków!")
+    
+    def s_akcje(self):
+        ceny = {"intel": 100, "lenovo": 300, "nvidia": 550}
+        wybor = input("Które akcje chcesz sprzedać? (intel, lenovo, nvidia): ").lower()
+        if wybor in ceny:
+            ile = int(input("Ile chcesz sprzedać? "))
+            if self.sejf[wybor] >= ile:
+                self.sejf[wybor] -= ile
+                self.saldo += ceny[wybor] * ile
+                print(f"Sprzedano {ile} akcji {wybor}. Saldo: {self.saldo}")
+            else:
+                print("Nie masz tylu akcji!")
+
+g1 = Konto_bankowe(10000,0,0,0,{})
+
+print("witaj na swoim koncie bankowym, jaką chcesz operacje wykonać")
+while True:
+    pp = input("w - wplata, e - wyplata, k - kredyt, a - kupno akcji, o - kupno krypto, f - sprzedaz akcji, p - sprzedarz krypto ")
+    if pp == "w":
+        g1.wplacanie(p=input)
+    elif pp == "e":
+        g1.wyplacanie(k=input)
+    elif pp == "k":
+        g1.wez_kredyt()
+    elif pp == "a":
+        g1.kup_akcje()
+    elif pp == "o":
+        g1.kup_krypto()
+    elif pp == "f":
+        g1.s_akcje()
