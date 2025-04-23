@@ -1,0 +1,248 @@
+import random
+
+class Konto_bankowe():
+    def __init__(self, saldo, kredyt=0, akcje=0, krypto=0, sejf=None):
+        if sejf is None:
+            sejf = {
+                "intel": 0, "lenovo": 0, "nvidia": 0,
+                "dogcoin": 0, "solana": 0, "bitcoin": 0
+            }
+        self.saldo = saldo
+        self.kredyt = kredyt
+        self.akcje = akcje
+        self.krypto = krypto
+        self.sejf = sejf
+        self.historia = []
+
+    def wplacanie(self):
+        try:
+            p = int(input("Wpisz wybraną sumę: "))
+            self.saldo += p
+            self.historia.append(f"Wpłata: +{p}")
+            print(f"Dokonałeś wpłaty o wysokości {p}")
+        except ValueError:
+            print("Nieprawidłowa wartość!")
+
+    def wyplacanie(self):
+            k = int(input("Wpisz wybraną sumę: "))
+            if k <= self.saldo:
+                self.saldo -= k
+                self.historia.append(f"Wypłata: -{k}")
+                print(f"Dokonałeś wypłaty o wysokości {k}")
+            else:
+                print("Brak wystarczających środków!")
+        
+    def wez_kredyt(self):
+            w = int(input("Podaj wielkość kredytu: "))
+            d = int(input("Podaj liczbę rat: "))
+            r = w * 1.25
+            rata = r / d
+            self.saldo += w
+            self.kredyt += r
+            self.historia.append(f"Kredyt: +{w}, do spłaty: {r:.2f}")
+            print(f"Przyznano kredyt: {w} zł. Do spłaty: {r:.2f} zł w {d} ratach po {rata:.2f} zł każda.")
+            print("Nieprawidłowa wartość!")
+
+    def kup_akcje(self):
+        ceny = {"intel": 100, "lenovo": 300, "nvidia": 550}
+        wybor = input("Wybierz akcje: intel (i), lenovo (l), nvidia (n): ").lower()
+        if wybor in {"i", "l", "n"}:
+                ile = int(input("Ile chcesz kupić? "))
+                nazwa = {"i": "intel", "l": "lenovo", "n": "nvidia"}[wybor]
+                koszt = ceny[nazwa] * ile
+                if self.saldo >= koszt:
+                    self.saldo -= koszt
+                    self.sejf[nazwa] += ile
+                    self.historia.append(f"Kupno akcji {nazwa}: -{koszt}")
+                    print(f"Kupiłeś {ile} akcji {nazwa}. Saldo: {self.saldo}")
+                else:
+                    print("Za mało środków!")
+
+    def kup_krypto(self):
+        ceny = {"dogcoin": 250, "solana": 600, "bitcoin": 1250}
+        wybor = input("Wybierz krypto: dogcoin (d), solana (s), bitcoin (b): ").lower()
+        if wybor in {"d", "s", "b"}:
+                ile = int(input("Ile chcesz kupić? "))
+                nazwa = {"d": "dogcoin", "s": "solana", "b": "bitcoin"}[wybor]
+                koszt = ceny[nazwa] * ile
+                if self.saldo >= koszt:
+                    self.saldo -= koszt
+                    self.sejf[nazwa] += ile
+                    self.historia.append(f"Kupno krypto {nazwa}: -{koszt}")
+                    print(f"Kupiłeś {ile} {nazwa}. Saldo: {self.saldo}")
+                else:
+                    print("Za mało środków!")
+    def s_akcje(self):
+        wybor = input("Które akcje chcesz sprzedać? (intel - i, lenovo - l, nvidia - n): ").lower()
+        if wybor == "i":
+                ile = int(input("Ile chcesz sprzedać? "))
+                if self.sejf["intel"] >= ile:
+                    self.sejf["intel"] -= ile
+                    self.saldo += 100*ile
+                    self.historia.append("Sprzedaż akcji intel")
+                    print(f"Sprzedano {ile} akcji intela. Saldo: {self.saldo}")
+                else:
+                    print("Nie masz tylu akcji!")
+        elif wybor == "l":
+                ile = int(input("Ile chcesz sprzedać? "))
+                if self.sejf["lenovo"] >= ile:
+                    self.sejf["lenovo"] -= ile
+                    self.saldo += 250*ile
+                    self.historia.append("Sprzedaż akcji lenovo")
+                    print(f"Sprzedano {ile} akcji lenovo. Saldo: {self.saldo}")
+                else:
+                    print("Nie masz tylu akcji!")
+        elif wybor == "n":
+                ile = int(input("Ile chcesz sprzedać? "))
+                if self.sejf["nvidia"] >= ile:
+                    self.sejf["nvidia"] -= ile
+                    self.saldo += 500*ile
+                    self.historia.append("Sprzedaż akcji nvidi")
+                    print(f"Sprzedano {ile} akcji nvidi. Saldo: {self.saldo}")
+                else:
+                    print("Nie masz tylu akcji!")
+                
+
+    def s_krypto(self):
+        wybor1 = input("Które akcje chcesz sprzedać? (dogcoin - d, solana - s, bitcoin - b): ").lower()
+        if wybor1 == "d":
+                ile = int(input("Ile chcesz sprzedać? "))
+                if self.sejf["dogcoint"] >= ile:
+                    self.sejf["dogcoin"] -= ile
+                    self.saldo += 100*ile
+                    self.historia.append("Sprzedaż krypto dogcoin")
+                    print(f"Sprzedano {ile} krypto dogcoin. Saldo: {self.saldo}")
+                else:
+                    print("Nie masz tylu akcji!")
+        elif wybor1 == "l":
+                ile = int(input("Ile chcesz sprzedać? "))
+                if self.sejf["solana"] >= ile:
+                    self.sejf["solana"] -= ile
+                    self.saldo += 300*ile
+                    self.historia.append("Sprzedaż krypto solana")
+                    print(f"Sprzedano {ile} krypto solana. Saldo: {self.saldo}")
+                else:
+                    print("Nie masz tylu akcji!")
+        elif wybor1 == "b":
+                ile = int(input("Ile chcesz sprzedać? "))
+                if self.sejf["bitcoin"] >= ile:
+                    self.sejf["bitcoin"] -= ile
+                    self.saldo += 1100*ile
+                    self.historia.append("Sprzedaż krypto bitcoin")
+                    print(f"Sprzedano {ile} krypto bitcoin. Saldo: {self.saldo}")
+                else:
+                    print("Nie masz tylu akcji!")
+
+class Konto_oszczednosciowe(Konto_bankowe):
+    def __init__(self, saldo, procent=0.05):
+        super().__init__(saldo)
+        self.procent = procent
+
+    def nalicz_odsetki(self):
+        odsetki = self.saldo * self.procent
+        self.saldo += odsetki
+        self.historia.append(f"odsetki wynosza: {odsetki}")
+        print(f"Nowe saldo: {self.saldo}")
+
+class Konto_inwestycyjne(Konto_bankowe):
+    def __init__(self, saldo):
+        super().__init__(saldo)
+
+    def ryzykowna_inwestycja(self):
+        print("Inwestujesz w ryzykowny fundusz...")
+        wynik_1 = random.randint(0.25, 2.0)
+        wynik_2 = random.randint(0.10, 2.5)
+        wynik_3 = random.randint(0.05, 3.0)
+        wybor = input("Wybierz co chcesz sprzedać, s - solana, d - dogcoin, b - bitcoin")
+        if wybor == "s":
+            print("ile chcesz jej sprzedać")
+            p = input().lower()
+            if self.sejf["solana"]<= p:
+                self.sejf["solana"] -= p
+                self.saldo * wynik_1*p
+        elif wybor == "d":
+            print("ile chcesz jej sprzedać")
+            p = input().lower()
+            if self.sejf["dogcoin"]<= p:
+                self.sejf["dogcoin"] -= p
+                self.saldo * wynik_2*p
+        elif wybor == "b":
+            print("ile chcesz jej sprzedać")
+            p = input().lower()
+            if self.sejf["bitcoin"]<= p:
+                self.sejf["bitcoin"] -= p
+                self.saldo * wynik_3*p
+
+def wyswietl_menu():
+    print("--- MENU ---")
+    print("w - wpłata")
+    print("e - wypłata")
+    print("k - kredyt")
+    print("a - kupno akcji")
+    print("o - kupno krypto")
+    print("f - sprzedaż akcji")
+    print("p - sprzedaż krypto")
+    print("h - historia transakcji")
+    print("s - stan konta")
+    print("z - zakończ")
+    print("n - nalicz odsetki (tylko oszczędnościowe)")
+    print("r - ryzykowna inwestycja (tylko inwestycyjne)")
+
+def u_konto(konto):
+    print("Witaj na swoim koncie bankowym!")
+    while True:
+        wyswietl_menu()
+        wybor = input("Wybierz operację: ").lower()
+        if wybor == "w":
+            konto.wplacanie()
+        elif wybor == "e":
+            konto.wyplacanie()
+        elif wybor == "k":
+            konto.wez_kredyt()
+        elif wybor == "a":
+            konto.kup_akcje()
+        elif wybor == "o":
+            konto.kup_krypto()
+        elif wybor == "f":
+            konto.s_akcje()
+        elif wybor == "p":
+            konto.s_krypto()
+        elif wybor == "h":
+            print("--- Historia transakcji ---")
+            for h in konto.historia:
+                print(h)
+        elif wybor == "s":
+            print(f"Saldo: {konto.saldo} zł")
+            print("Akcje i krypto w sejfie:")
+            for k, v in konto.sejf.items():
+                print(f"{k}: {v}")
+        elif wybor == "n":
+            if isinstance(konto, Konto_oszczednosciowe):
+                konto.nalicz_odsetki()
+            else:
+                print("Ta operacja dostępna tylko dla konta oszczędnościowego!")
+        elif wybor == "r":
+            if isinstance(konto, Konto_inwestycyjne):
+                konto.ryzykowna_inwestycja()
+            else:
+                print("Ta operacja dostępna tylko dla konta inwestycyjnego!")
+        elif wybor == "z":
+            print("Dziękujemy za skorzystanie z usług banku!")
+            break
+        else:
+            print("Nieznana operacja!")
+
+
+print("Wybierz typ konta: 1 - zwykłe, 2 - oszczędnościowe, 3 - inwestycyjne")
+typ = input("Twój wybór: ")
+if typ == "1":
+    konto = Konto_bankowe(10000)
+elif typ == "2":
+    konto = Konto_oszczednosciowe(10000)
+elif typ == "3":
+    konto = Konto_inwestycyjne(10000)
+else:
+    print("Nieznany typ konta. Tworzę zwykłe konto.")
+    konto = Konto_bankowe(10000)
+
+u_konto(konto)         
